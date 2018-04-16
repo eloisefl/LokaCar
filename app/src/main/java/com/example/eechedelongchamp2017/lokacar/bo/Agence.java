@@ -1,5 +1,7 @@
 package com.example.eechedelongchamp2017.lokacar.bo;
 
+import java.util.List;
+
 public class Agence {
 
     private Adresse adresse;
