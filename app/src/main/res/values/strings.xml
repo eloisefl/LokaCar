@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LokaCar</string>
+    <string name="bienvenue">Bienvenue !</string>
+    <string name="mes_voitures">Mes voitures</string>
+    <string name="mes_clients">Mes clients</string>
+    <string name="deconnexion">Deconnexion</string>
+    <string name="main_loc_mensuelles">Locations mensuelles</string>
+    <string name="main_loc_anuelles">Locations anuelles</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
