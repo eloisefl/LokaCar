@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AuthActivity">
+
+    <TextView
+        android:id="@+id/textLogin"
+        android:text="Login : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textLogin"
+        android:hint="@string/votreLogin"
+        android:text=""
+        />
+
+    <TextView
+        android:id="@+id/textMdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Mot de passe : "
+        android:layout_below="@id/textLogin"
+        />
+
+    <EditText
+        android:id="@+id/editMdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textMdp"
+        android:layout_below="@id/textLogin"
+        android:hint="@string/votreMdp"
+        />
+
+    <Button
+        android:id="@+id/buttonValidation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Validation"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onValidationClick"
+        />
+
+</LinearLayout>

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">LokaCar</string>
+    <string name="votreLogin">Votre Login</string>
+    <string name="votreMdp">Votre mot de passe</string>
     <string name="bienvenue">Bienvenue !</string>
     <string name="mes_voitures">Mes voitures</string>
     <string name="mes_clients">Mes clients</string>
