@@ -222,4 +222,6 @@
             android:layout_height="match_parent"
             android:text="Annuler"/>
 
+    </LinearLayout>
+
 </LinearLayout>
