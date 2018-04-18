@@ -10,22 +10,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eechedelongchamp2017.lokacar.R;
-import com.example.eechedelongchamp2017.lokacar.adapter.RecycledVoituresAdapter;
+import com.example.eechedelongchamp2017.lokacar.adapter.RecycledVoituresGenreAdapter;
 import com.example.eechedelongchamp2017.lokacar.bo.Voiture;
 
-public class ListeVoituresFragment extends Fragment {
+public class ListeVoitureGenreFragment extends Fragment {
 
     private RecyclerView recyclerview;
-    private OnListFragmentInteractionListener listener;
+    private ListeVoitureGenreFragment.OnListFragmentInteractionListener listener;
 
-    public ListeVoituresFragment() {
+    public ListeVoitureGenreFragment() {
 
     }
 
     // Use : to create new instance of this fragment
-    public static ListeVoituresFragment newInstance(String car_name, String nb_dispo) {
+    public static ListeVoitureGenreFragment newInstance(String immatriculation,
+                        String loue, String disponible) {
 
-        ListeVoituresFragment fragment = new ListeVoituresFragment();
+        ListeVoitureGenreFragment fragment = new ListeVoitureGenreFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -44,9 +45,8 @@ public class ListeVoituresFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout
-        View view = inflater.inflate(R.layout.fragment_listevoitures_list,
+        View view = inflater.inflate(R.layout.fragment_listevoituregenre_list,
                 container, false);
 
         // Set the adapter
@@ -64,7 +64,7 @@ public class ListeVoituresFragment extends Fragment {
     }
 
     // Change adapter
-    public void setAdapteer(RecycledVoituresAdapter adapter) {
+    public void setAdaptuur(RecycledVoituresGenreAdapter adapter) {
         recyclerview.setAdapter(adapter);
     }
 
@@ -72,7 +72,7 @@ public class ListeVoituresFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
-            listener = (OnListFragmentInteractionListener) context;
+            listener = (ListeVoitureGenreFragment.OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");

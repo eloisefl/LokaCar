@@ -8,12 +8,12 @@
     <fragment
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:id="@+id/liste_marques"
+        android:id="@+id/voiture_fragment"
         android:layout_weight="0.3"
         class="com.example.eechedelongchamp2017.lokacar.fragments.ListeVoituresFragment"/>
 
     <fragment
-        android:id="@+id/liste_modeles"
+        android:id="@+id/voiture_genre_fragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         class="com.example.eechedelongchamp2017.lokacar.fragments.MesVoitureGenreFragment"

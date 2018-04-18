@@ -1,9 +1,12 @@
 package com.example.eechedelongchamp2017.lokacar.bo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Blob;
 import java.util.List;
 
-public class Voiture {
+public class Voiture implements Parcelable {
 
     private String immatriculation;
     private int nbPortes;
@@ -43,6 +46,30 @@ public class Voiture {
         this.locations = locations;
         this.agence = agence;
     }
+
+    protected Voiture(Parcel in) {
+        immatriculation = in.readString();
+        nbPortes = in.readInt();
+        nbPlaces = in.readInt();
+        isEssence = in.readByte() != 0;
+        isDiesel = in.readByte() != 0;
+        puissanceMoteur = in.readInt();
+        isLoue = in.readByte() != 0;
+        isDisponible = in.readByte() != 0;
+        photoNom = in.readString();
+    }
+
+    public static final Creator<Voiture> CREATOR = new Creator<Voiture>() {
+        @Override
+        public Voiture createFromParcel(Parcel in) {
+            return new Voiture(in);
+        }
+
+        @Override
+        public Voiture[] newArray(int size) {
+            return new Voiture[size];
+        }
+    };
 
     public String getImmatriculation() {
         return immatriculation;
@@ -174,5 +201,24 @@ public class Voiture {
                 ", locations=" + locations +
                 ", agence=" + agence +
                 '}';
+    }
+
+    // Parcelable implementation
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(immatriculation);
+        dest.writeInt(nbPortes);
+        dest.writeInt(nbPlaces);
+        dest.writeByte((byte) (isEssence ? 1 : 0));
+        dest.writeByte((byte) (isDiesel ? 1 : 0));
+        dest.writeInt(puissanceMoteur);
+        dest.writeByte((byte) (isLoue ? 1 : 0));
+        dest.writeByte((byte) (isDisponible ? 1 : 0));
+        dest.writeString(photoNom);
     }
 }

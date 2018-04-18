@@ -21,6 +21,7 @@
 
         <!-- Check size -->
         <ImageView
+            android:id="@+id/voiture_photo"
             android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_weight="0.3"
@@ -31,7 +32,7 @@
             />
 
         <TextView
-            android:id="@+id/item_number"
+            android:id="@+id/voiture_nom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
@@ -41,7 +42,7 @@
             android:text="Porsche Cayenne"/>
 
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/voiture_dispo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
