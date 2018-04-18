@@ -13,23 +13,33 @@ public class Agence {
     public Agence() {
     }
 
-    public Agence(String nomAgence, Adresse adresse, Gerant gerant, List<Voiture> parcVoiture) {
-        this.adresse = adresse;
+    public Agence(String nomAgence, Adresse adresse, Gerant gerant) {
         this.nomAgence = nomAgence;
+        this.adresse = adresse;
+        this.gerant = gerant;
+    }
+
+    public Agence(String nomAgence, Adresse adresse, Gerant gerant, List<Voiture> parcVoiture) {
+        this.nomAgence = nomAgence;
+        this.adresse = adresse;
         this.gerant = gerant;
         this.parcVoiture = parcVoiture;
     }
 
     public Agence(int id, String nomAgence, Adresse adresse, Gerant gerant, List<Voiture> parcVoiture) {
         this.id = id;
-        this.adresse = adresse;
         this.nomAgence = nomAgence;
+        this.adresse = adresse;
         this.gerant = gerant;
         this.parcVoiture = parcVoiture;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Adresse getAdresse() {

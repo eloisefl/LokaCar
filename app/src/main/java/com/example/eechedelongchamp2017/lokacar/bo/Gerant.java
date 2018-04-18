@@ -9,6 +9,10 @@ public class Gerant extends Personne {
     public Gerant() {
     }
 
+    public Gerant(int id) {
+        this.id = id;
+    }
+
     public Gerant(String nom, String prenom, Adresse adresse, String tel, String email, String login, String mdp) {
         super();
         this.setNom(nom);

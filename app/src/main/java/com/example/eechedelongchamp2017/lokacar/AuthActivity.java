@@ -8,37 +8,41 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.eechedelongchamp2017.lokacar.bo.Agence;
 import com.example.eechedelongchamp2017.lokacar.bo.Gerant;
+import com.example.eechedelongchamp2017.lokacar.dal.AgenceDao;
 import com.example.eechedelongchamp2017.lokacar.dal.GerantDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthActivity extends AppCompatActivity {
-
     private GerantDao gerantDao;
+    private AgenceDao agenceDao;
     private TextView editionInconnu;
     private EditText editionLogin;
     private List<Gerant> listeGerant;
     private EditText editionMdp;
  //   private Button boutonValidation;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        // On va chercher la Liste des Gérants dans la BDD pour vérifier l'authentification :
-        listeGerant = new ArrayList <>();
         gerantDao = new GerantDao(AuthActivity.this);
-
+/*
         // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
-        /*
-        gerantDao = new GerantDao(AuthActivity.this);
-        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null,
-                "0769542685", "eloise.frechede@free.fr", "efrechede", "123");
+        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null, "0769471161", "eloise.frechede@free.fr", "efrechede", "123");
         gerantDao.insertGerant(gerant);
-        */
+
+        // 1ère insertion dans la base Agence :
+        Agence agence = new Agence("NANTES", null, new Gerant(1));
+        agenceDao = new AgenceDao(AuthActivity.this);
+        agenceDao.insertAgence(agence);
+*/
     }
 
     public void onValidationClick(View view){
@@ -48,6 +52,8 @@ public class AuthActivity extends AppCompatActivity {
         editionMdp = (EditText) findViewById(R.id.editMdp);
         //  boutonValidation = (Button) findViewById(R.id.buttonValidation);
 
+        // On va chercher la Liste des Gérants dans la BDD pour vérifier l'authentification :
+        listeGerant = new ArrayList <>();
         listeGerant = gerantDao.selectAll();
         for (Gerant gerant:listeGerant) {
             if ( gerant.getLogin().toString().equalsIgnoreCase(editionLogin.getText().toString())

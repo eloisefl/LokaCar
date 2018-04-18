@@ -22,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //private GerantDao gerantDao;
     private TextView titre_bienvenue;
 
     @Override
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent != null && intent.getStringExtra("gerant") != null)
             titre_bienvenue.setText(String.format(
                     "Bienvenue %s !", intent.getStringExtra("gerant")));
+
 
         /*
          * Google Charting API
