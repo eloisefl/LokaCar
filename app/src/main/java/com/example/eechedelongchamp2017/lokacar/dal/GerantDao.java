@@ -1,13 +1,14 @@
 package com.example.eechedelongchamp2017.lokacar.dal;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.eechedelongchamp2017.lokacar.bo.Gerant;
+import com.example.eechedelongchamp2017.lokacar.bo.DataContract;
 import com.example.eechedelongchamp2017.lokacar.helper.GestionBddHelper;
 
 
@@ -24,11 +25,16 @@ public class GerantDao {
         List<Gerant> listeGerant = new ArrayList<>();
 
         Cursor c = db.query(
-                    GestionBddHelper.TABLE_NAME,
+                    DataContract.NOM_TABLE_GERANT,
                     new String[]{
-                            GestionBddHelper.COL_ID,
-                            GestionBddHelper.COL_LOGIN,
-                            GestionBddHelper.COL_MDP
+                            DataContract.COL_ID,
+                            DataContract.COL_NOM,
+                            DataContract.COL_PRENOM,
+                            DataContract.COL_ADRESSE,
+                            DataContract.COL_TEL,
+                            DataContract.COL_EMAIL,
+                            DataContract.COL_LOGIN,
+                            DataContract.COL_MDP
                             },
                     null,
                     null,
@@ -40,13 +46,31 @@ public class GerantDao {
         if (c != null && c.moveToFirst()) {
             do {
                 Gerant gerant = new Gerant(
-                        c.getInt(c.getColumnIndex(GestionBddHelper.COL_ID)),
-                        c.getString(c.getColumnIndex(GestionBddHelper.COL_LOGIN)),
-                        c.getString(c.getColumnIndex(GestionBddHelper.COL_MDP))
+                        c.getInt(c.getColumnIndex(DataContract.COL_ID)),
+                        c.getString(c.getColumnIndex(DataContract.COL_NOM)),
+                        c.getString(c.getColumnIndex(DataContract.COL_PRENOM)),
+                        null,
+                        c.getString(c.getColumnIndex(DataContract.COL_TEL)),
+                        c.getString(c.getColumnIndex(DataContract.COL_EMAIL)),
+                        c.getString(c.getColumnIndex(DataContract.COL_LOGIN)),
+                        c.getString(c.getColumnIndex(DataContract.COL_MDP))
                 );
                 listeGerant.add(gerant);
             } while (c.moveToNext());
         }
         return listeGerant;
     }
+
+    public void insertGerant(Gerant gerant) {
+        ContentValues values = new ContentValues();
+            values.put(DataContract.COL_NOM, gerant.getNom());
+            values.put(DataContract.COL_PRENOM, gerant.getPrenom());
+            //values.put(DataContract.COL_ADRESSE,);
+            values.put(DataContract.COL_TEL, gerant.getTel());
+            values.put(DataContract.COL_EMAIL, gerant.getEmail());
+            values.put(DataContract.COL_LOGIN, gerant.getLogin());
+            values.put(DataContract.COL_MDP, gerant.getMdp());
+        db.insert(DataContract.NOM_TABLE_GERANT,null, values);
+    }
+
 }

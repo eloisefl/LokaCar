@@ -9,8 +9,25 @@ public class Gerant extends Personne {
     public Gerant() {
     }
 
-    public Gerant(int id, String login, String mdp) {
+    public Gerant(String nom, String prenom, Adresse adresse, String tel, String email, String login, String mdp) {
+        super();
+        this.setNom(nom);
+        this.setPrenom(prenom);
+        this.setAdresse(adresse);
+        this.setTel(tel);
+        this.setEmail(email);
+        this.login = login;
+        this.mdp = mdp;
+    }
+
+    public Gerant(int id, String nom, String prenom, Adresse adresse, String tel, String email, String login, String mdp) {
+        super();
         this.id = id;
+        this.setNom(nom);
+        this.setPrenom(prenom);
+        this.setAdresse(adresse);
+        this.setTel(tel);
+        this.setEmail(email);
         this.login = login;
         this.mdp = mdp;
     }
@@ -42,10 +59,14 @@ public class Gerant extends Personne {
 
     @Override
     public String toString() {
-        return "Gerant{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", mdp='" + mdp + '\'' +
-                '}';
+        return "Gerant{"
+                + "id =" + id + ", "
+                + "nom = " + getNom() + ", "
+                + "prenom = " + getPrenom() + ", "
+                + "adresse = " + getAdresse() + ", "
+                + "tél = " + getTel() + ", "
+                + "email = " + getEmail() + ", "
+                + "login = " + login + ", "
+                + "mdp = " + mdp;
     }
 }

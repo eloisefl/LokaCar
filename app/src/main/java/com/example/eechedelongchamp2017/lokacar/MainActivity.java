@@ -12,16 +12,28 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.example.eechedelongchamp2017.lokacar.bo.Gerant;
+import com.example.eechedelongchamp2017.lokacar.dal.GerantDao;
+
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //private GerantDao gerantDao;
     private TextView titre_bienvenue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
+        // gerantDao = new GerantDao(MainActivity.this);
+        // Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null, "0769471161", "eloise.frechede@free.fr", "efrechede", "123");
+        // gerantDao.insertGerant(gerant);
 
         // Definition du nom du gerant dans le TextView
         Intent intent = getIntent();
@@ -68,4 +80,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
