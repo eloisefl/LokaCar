@@ -22,6 +22,8 @@ public class AuthActivity extends AppCompatActivity {
     private EditText editionMdp;
  //   private Button boutonValidation;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,6 @@ public class AuthActivity extends AppCompatActivity {
         // On va chercher la Liste des Gérants dans la BDD pour vérifier l'authentification :
         listeGerant = new ArrayList <>();
         gerantDao = new GerantDao(AuthActivity.this);
-        listeGerant = gerantDao.selectAll();
     }
 
     public void onValidationClick(View view){
@@ -41,6 +42,7 @@ public class AuthActivity extends AppCompatActivity {
         editionMdp = (EditText) findViewById(R.id.editMdp);
         //  boutonValidation = (Button) findViewById(R.id.buttonValidation);
 
+        listeGerant = gerantDao.selectAll();
         for (Gerant gerant:listeGerant) {
             if ( gerant.getLogin().toString().equalsIgnoreCase(editionLogin.getText().toString())
                  &&
