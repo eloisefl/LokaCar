@@ -35,7 +35,7 @@ public class AuthActivity extends AppCompatActivity {
         gerantDao = new GerantDao(AuthActivity.this);
 /*
         // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
-        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null, "0769471161", "eloise.frechede@free.fr", "efrechede", "123");
+        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null, "0884541628", "eloise.frechede@free.fr", "efrechede", "123");
         gerantDao.insertGerant(gerant);
 
         // 1ère insertion dans la base Agence :

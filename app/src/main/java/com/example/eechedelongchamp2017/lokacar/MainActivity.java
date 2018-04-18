@@ -76,4 +76,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void clickAjouterVoiture(View view) {
+
+        Intent intent = new Intent(MainActivity.this, AjouterVoitureActivity.class);
+        startActivity(intent);
+
+    }
 }

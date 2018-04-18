@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".AjouterVoitureActivity">
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Ajouter une/des voiture(s)"/>
+
+    <!-- Immatriculation -->
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:text="Immatriculation(s) - separées par des virgules - :"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Entrez la (ou les) immatriculation(s) "/>
+
+    <!-- Nombre de portes -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Nb de portes :"/>
+
+        <Spinner
+            android:id="@+id/nb_portes_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"/>
+    </LinearLayout>
+
+    <!-- Marque -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Marque :"/>
+
+        <Spinner
+            android:id="@+id/marques_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Disponible a la location -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Disponible :"/>
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton android:id="@+id/ck_dispo_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oui"/>
+
+            <RadioButton android:id="@+id/ck_non_dispo_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <!-- Essense ou diesel -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:textSize="17dp"
+            android:text="Carburant : "/>
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton android:id="@+id/ck_essence"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Essence"/>
+
+            <RadioButton android:id="@+id/ck_diesel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Diesel"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <!-- Puissance moteur -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Puissance du moteur :"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:hint=""/>
+    </LinearLayout>
+
+    <!-- Photos -->
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:text="Photos :"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Selectionner une photo"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Prendre une photo"/>
+
+    </LinearLayout>
+
+    <!-- Type locatif -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Type locatif (et prix)"/>
+
+        <Spinner
+            android:id="@+id/typeLocatif_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"/>
+    </LinearLayout>
+
+    <!-- Btn valider & annuler -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Valider"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Annuler"/>
+
+</LinearLayout>

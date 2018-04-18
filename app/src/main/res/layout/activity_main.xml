@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
@@ -62,5 +62,34 @@
 
     </ScrollView>
 
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floating_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu_colorNormal="#DA4336"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:menu_icon="@drawable/fab_add">
 
-</LinearLayout>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_crop"
+            app:fab_size="mini"
+            app:fab_label="Ajouter un client" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_voiture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/stat_sys_upload_done"
+            app:fab_size="mini"
+            app:fab_label="Ajouter des voitures"
+            android:onClick="clickAjouterVoiture"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+
+</FrameLayout>

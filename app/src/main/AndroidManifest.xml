@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MesVoituresActivity" />
-        <activity android:name=".MesVoituresGenreActivity"></activity>
-
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MesVoituresGenreActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AjouterVoitureActivity"></activity>
     </application>
 
 </manifest>
