@@ -13,6 +13,7 @@ import com.example.eechedelongchamp2017.lokacar.adapter.MesVoituresGenreAdapter;
 import com.example.eechedelongchamp2017.lokacar.bo.Marque;
 import com.example.eechedelongchamp2017.lokacar.bo.Modele;
 import com.example.eechedelongchamp2017.lokacar.bo.Voiture;
+import com.example.eechedelongchamp2017.lokacar.dal.VoitureDao;
 import com.example.eechedelongchamp2017.lokacar.fragments.ListeVoitureGenreFragment;
 import com.example.eechedelongchamp2017.lokacar.fragments.MesVoitureGenreFragment;
 
@@ -20,12 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MesVoituresGenreActivity extends AppCompatActivity
-    // implements ListeVoitureGenreFragment.OnListFragmentInteractionListener
-        implements MesVoitureGenreFragment.OnFragmentInteractionListener
-{
+        implements MesVoitureGenreFragment.OnFragmentInteractionListener {
 
     private ListView listview_voituresgenres;
     private MesVoituresGenreAdapter adapter;
+
+    private VoitureDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +34,13 @@ public class MesVoituresGenreActivity extends AppCompatActivity
         setContentView(R.layout.activity_mes_voitures_genre);
 
         // Données de la ListView
-        List<Voiture> list = new ArrayList<>();
-        Voiture voit = new Voiture();
-        voit.setImmatriculation("IFKHSNCH5421SKDN");
-        voit.setMarque(new Marque(1, "citroen", new ArrayList<Voiture>(), new Modele(1, "c3", null)));
-        list.add(voit);
-        list.add(voit);
-        list.add(voit);
+        dao = new VoitureDao(MesVoituresGenreActivity.this);
+        List<Voiture> list = dao.selectAll();
 
         // ListView
-        listview_voituresgenres = (ListView) findViewById(R.id.listview_voituresgenres);
+        listview_voituresgenres = findViewById(R.id.listview_voituresgenres);
         adapter = new MesVoituresGenreAdapter(MesVoituresGenreActivity.this, R.layout.fragment_mes_voiture_genre_content, list);
         listview_voituresgenres.setAdapter(adapter);
-
-
 
     }
 
@@ -76,7 +70,6 @@ public class MesVoituresGenreActivity extends AppCompatActivity
                 break;
 
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

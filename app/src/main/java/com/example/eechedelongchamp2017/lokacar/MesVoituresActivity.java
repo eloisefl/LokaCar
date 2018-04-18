@@ -27,12 +27,10 @@ import java.util.List;
 public class MesVoituresActivity extends AppCompatActivity
     implements
         ListeVoituresFragment.OnListFragmentInteractionListener,
-        //ListeVoitureGenreFragment.OnListFragmentInteractionListener
         MesVoitureGenreFragment.OnFragmentInteractionListener
 {
 
     private ListeVoituresFragment voituresFragment;
-    //private ListeVoitureGenreFragment voituresGenreFragment;
     private MesVoitureGenreFragment voituresGenreFragment;
     private ListView listview_voituresgenres;
     private MesVoituresGenreAdapter adapter;
@@ -59,7 +57,6 @@ public class MesVoituresActivity extends AppCompatActivity
 
         // Données ListeView
         if (voituresGenreFragment != null && voituresGenreFragment.isInLayout()) {
-            // ListView
             listview_voituresgenres = findViewById(R.id.listview_voituresgenres);
             adapter = new MesVoituresGenreAdapter(MesVoituresActivity.this, R.layout.fragment_mes_voiture_genre_content, list);
             listview_voituresgenres.setAdapter(adapter);
@@ -85,7 +82,6 @@ public class MesVoituresActivity extends AppCompatActivity
                 break;
 
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -93,12 +89,12 @@ public class MesVoituresActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Voiture item) {
 
+        // adapter = new MesVoituresGenreAdapter(MesVoituresActivity.this, R.layout.fragment_mes_voiture_genre_content, list);
+        // listview_voituresgenres.setAdapter(adapter);
+
         Intent intent = new Intent(MesVoituresActivity.this, MesVoituresGenreActivity.class);
         intent.putExtra("voiture", item);
         startActivity(intent);
-
-        // adapter = new MesVoituresGenreAdapter(MesVoituresActivity.this, R.layout.fragment_mes_voiture_genre_content, list);
-        // listview_voituresgenres.setAdapter(adapter);
 
     }
 
