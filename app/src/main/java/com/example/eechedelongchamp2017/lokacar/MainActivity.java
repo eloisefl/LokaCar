@@ -22,7 +22,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private GerantDao gerantDao;
     private TextView titre_bienvenue;
 
     @Override
@@ -30,18 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
-        // gerantDao = new GerantDao(MainActivity.this);
-        // Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null, "0769471161", "eloise.frechede@free.fr", "efrechede", "123");
-        // gerantDao.insertGerant(gerant);
-
         // Definition du nom du gerant dans le TextView
         Intent intent = getIntent();
         titre_bienvenue = findViewById(R.id.titre_bienvenue);
         if (intent != null && intent.getStringExtra("gerant") != null)
             titre_bienvenue.setText(String.format(
                     "Bienvenue %s !", intent.getStringExtra("gerant")));
-
 
         /*
          * Google Charting API

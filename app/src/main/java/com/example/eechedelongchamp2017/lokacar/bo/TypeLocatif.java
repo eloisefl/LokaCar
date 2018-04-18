@@ -1,18 +1,20 @@
 package com.example.eechedelongchamp2017.lokacar.bo;
 
+import java.util.List;
+
 public class TypeLocatif {
     private int id;
     private String nom;
-    private Voiture voiture;
+    private List<Voiture> voitures;
     private Tarif tarif;
 
     public TypeLocatif() {
     }
 
-    public TypeLocatif(int id, String nom, Voiture voiture, Tarif tarif) {
+    public TypeLocatif(int id, String nom, List<Voiture> voitures, Tarif tarif) {
         this.id = id;
         this.nom = nom;
-        this.voiture = voiture;
+        this.voitures = voitures;
         this.tarif = tarif;
     }
 
@@ -33,12 +35,12 @@ public class TypeLocatif {
         this.nom = nom;
     }
 
-    public Voiture getVoiture() {
-        return voiture;
+    public List<Voiture> getVoitures() {
+        return voitures;
     }
 
-    public void setVoiture(Voiture voiture) {
-        this.voiture = voiture;
+    public void setVoitures(List<Voiture> voitures) {
+        this.voitures = voitures;
     }
 
     public Tarif getTarif() {
@@ -54,7 +56,7 @@ public class TypeLocatif {
         return "TypeLocatif{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
-                ", voiture=" + voiture +
+                ", voiture=" + voitures +
                 ", tarif=" + tarif +
                 '}';
     }

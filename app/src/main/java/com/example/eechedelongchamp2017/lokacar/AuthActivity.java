@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AuthActivity extends AppCompatActivity {
+
     private GerantDao gerantDao;
     private TextView editionInconnu;
     private EditText editionLogin;
@@ -22,17 +23,22 @@ public class AuthActivity extends AppCompatActivity {
     private EditText editionMdp;
  //   private Button boutonValidation;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-
         // On va chercher la Liste des Gérants dans la BDD pour vérifier l'authentification :
         listeGerant = new ArrayList <>();
         gerantDao = new GerantDao(AuthActivity.this);
+
+        // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
+        /*
+        gerantDao = new GerantDao(AuthActivity.this);
+        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null,
+                "0769542685", "eloise.frechede@free.fr", "efrechede", "123");
+        gerantDao.insertGerant(gerant);
+        */
     }
 
     public void onValidationClick(View view){

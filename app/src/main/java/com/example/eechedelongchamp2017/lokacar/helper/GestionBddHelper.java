@@ -17,6 +17,13 @@ public class GestionBddHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataContract.CREATE_TABLE_GERANT);
         db.execSQL(DataContract.CREATE_TABLE_AGENCE);
+
+        // Table Voiture & tables liées (+ agence avant)
+        db.execSQL(DataContract.CREATE_TABLE_MARQUE);
+        db.execSQL(DataContract.CREATE_TABLE_MODELE);
+        db.execSQL(DataContract.CREATE_TABLE_TYPE_LOCATIF);
+        db.execSQL(DataContract.CREATE_TABLE_TARIF);
+        db.execSQL(DataContract.CREATE_TABLE_VOITURE);
     }
 
     @Override
@@ -24,6 +31,14 @@ public class GestionBddHelper extends SQLiteOpenHelper{
         if(oldVersion < newVersion) {
             db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_GERANT);
             db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_AGENCE);
+
+            // Table Voiture & tables liées (+ agence avant)
+            db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_MARQUE);
+            db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_MODELE);
+            db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_TYPE_LOCATIF);
+            db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_TARIF);
+            db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_VOITURE);
+
             onCreate(db);
         }
     }

@@ -16,6 +16,7 @@ import com.example.eechedelongchamp2017.lokacar.adapter.RecycledVoituresGenreAda
 import com.example.eechedelongchamp2017.lokacar.bo.Marque;
 import com.example.eechedelongchamp2017.lokacar.bo.Modele;
 import com.example.eechedelongchamp2017.lokacar.bo.Voiture;
+import com.example.eechedelongchamp2017.lokacar.dal.VoitureDao;
 import com.example.eechedelongchamp2017.lokacar.fragments.ListeVoitureGenreFragment;
 import com.example.eechedelongchamp2017.lokacar.fragments.ListeVoituresFragment;
 import com.example.eechedelongchamp2017.lokacar.fragments.MesVoitureGenreFragment;
@@ -35,33 +36,31 @@ public class MesVoituresActivity extends AppCompatActivity
     private MesVoitureGenreFragment voituresGenreFragment;
     private ListView listview_voituresgenres;
     private MesVoituresGenreAdapter adapter;
+
     private String LOG_TAG = "TAG_LOKACAR";
+
+    private VoitureDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mes_voitures);
 
-        // Récupérer deux fragments
+        // Récuperation des deux fragments
         voituresFragment = (ListeVoituresFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.voiture_fragment);
         voituresGenreFragment = (MesVoitureGenreFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.voiture_genre_fragment);
 
         // Données Fragment
-        List<Voiture> list = new ArrayList<>();
-        Voiture voit = new Voiture();
-        voit.setImmatriculation("IFKHSNCH5421SKDN");
-        voit.setMarque(new Marque(1, "citroen", new ArrayList<Voiture>(), new Modele(1, "c3", null)));
-        list.add(voit);
-        list.add(voit);
-        list.add(voit);
+        dao = new VoitureDao(MesVoituresActivity.this);
+        List<Voiture> list = dao.selectAll();
         voituresFragment.setAdapteer(new RecycledVoituresAdapter(list,MesVoituresActivity.this));
 
         // Données ListeView
         if (voituresGenreFragment != null && voituresGenreFragment.isInLayout()) {
             // ListView
-            listview_voituresgenres = (ListView) findViewById(R.id.listview_voituresgenres);
+            listview_voituresgenres = findViewById(R.id.listview_voituresgenres);
             adapter = new MesVoituresGenreAdapter(MesVoituresActivity.this, R.layout.fragment_mes_voiture_genre_content, list);
             listview_voituresgenres.setAdapter(adapter);
         }
