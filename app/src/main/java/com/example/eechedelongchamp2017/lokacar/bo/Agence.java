@@ -4,19 +4,32 @@ import java.util.List;
 
 public class Agence {
 
-    private Adresse adresse;
+    private int id;
     private String nomAgence;
+    private Adresse adresse;
     private Gerant gerant;
-    private List<Voiture> parcAgence;
+    private List<Voiture> parcVoiture;
 
     public Agence() {
     }
 
-    public Agence(Adresse adresse, String nomAgence, Gerant gerant, List<Voiture> parcAgence) {
+    public Agence(String nomAgence, Adresse adresse, Gerant gerant, List<Voiture> parcVoiture) {
         this.adresse = adresse;
         this.nomAgence = nomAgence;
         this.gerant = gerant;
-        this.parcAgence = parcAgence;
+        this.parcVoiture = parcVoiture;
+    }
+
+    public Agence(int id, String nomAgence, Adresse adresse, Gerant gerant, List<Voiture> parcVoiture) {
+        this.id = id;
+        this.adresse = adresse;
+        this.nomAgence = nomAgence;
+        this.gerant = gerant;
+        this.parcVoiture = parcVoiture;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Adresse getAdresse() {
@@ -43,12 +56,12 @@ public class Agence {
         this.gerant = gerant;
     }
 
-    public List<Voiture> getParcAgence() {
-        return parcAgence;
+    public List<Voiture> getParcVoiture() {
+        return parcVoiture;
     }
 
-    public void setParcAgence(List<Voiture> parcAgence) {
-        this.parcAgence = parcAgence;
+    public void setParcVoiture(List<Voiture> parcVoiture) {
+        this.parcVoiture = parcVoiture;
     }
 
     @Override
@@ -57,8 +70,7 @@ public class Agence {
                 "adresse=" + adresse +
                 ", nomAgence='" + nomAgence + '\'' +
                 ", gerant=" + gerant +
-                ", parcAgence=" + parcAgence +
+                ", parcVoiture=" + parcVoiture +
                 '}';
     }
-
 }

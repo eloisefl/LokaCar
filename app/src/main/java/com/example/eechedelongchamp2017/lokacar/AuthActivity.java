@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.eechedelongchamp2017.lokacar.bo.Gerant;
 import com.example.eechedelongchamp2017.lokacar.dal.GerantDao;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class AuthActivity extends AppCompatActivity {
     private GerantDao gerantDao;
+    private TextView editionInconnu;
     private EditText editionLogin;
     private List<Gerant> listeGerant;
     private EditText editionMdp;
@@ -25,6 +27,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
+
         // On va chercher la Liste des Gérants dans la BDD pour vérifier l'authentification :
         listeGerant = new ArrayList <>();
         gerantDao = new GerantDao(AuthActivity.this);
@@ -33,6 +36,7 @@ public class AuthActivity extends AppCompatActivity {
 
     public void onValidationClick(View view){
         Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+        editionInconnu= (TextView) findViewById(R.id.textInconnu);
         editionLogin = (EditText) findViewById(R.id.editLogin);
         editionMdp = (EditText) findViewById(R.id.editMdp);
         //  boutonValidation = (Button) findViewById(R.id.buttonValidation);
@@ -44,6 +48,8 @@ public class AuthActivity extends AppCompatActivity {
             {
                 intent.putExtra("gerant", gerant.getNom()+ " " + gerant.getPrenom());
                 startActivity(intent);
+            }else {
+                editionInconnu.setVisibility(View.VISIBLE);
             }
         }
 

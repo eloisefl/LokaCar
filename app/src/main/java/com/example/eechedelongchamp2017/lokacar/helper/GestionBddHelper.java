@@ -16,13 +16,14 @@ public class GestionBddHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataContract.CREATE_TABLE_GERANT);
+        db.execSQL(DataContract.CREATE_TABLE_AGENCE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(oldVersion < newVersion) {
             db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_GERANT);
-
+            db.execSQL(DataContract.QUERY_DELETE_TABLE + DataContract.NOM_TABLE_AGENCE);
             onCreate(db);
         }
     }
