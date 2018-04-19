@@ -33,6 +33,10 @@ public class MesVoituresGenreActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mes_voitures_genre);
 
+        // Bouton Home
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Mes voitures - Modeles");
+
         // Données de la ListView
         dao = new VoitureDao(MesVoituresGenreActivity.this);
         List<Voiture> list = dao.selectAll();
@@ -62,10 +66,22 @@ public class MesVoituresGenreActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+
         switch (item.getItemId()) {
 
+            case android.R.id.home:
+                intent = new Intent(MesVoituresGenreActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.mes_voitures:
-                Intent intent = new Intent(MesVoituresGenreActivity.this, MesVoituresActivity.class);
+                intent = new Intent(MesVoituresGenreActivity.this, MesVoituresActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.deconnexion:
+                intent = new Intent(MesVoituresGenreActivity.this, AuthActivity.class);
                 startActivity(intent);
                 break;
 

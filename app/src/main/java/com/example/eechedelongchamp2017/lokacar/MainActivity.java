@@ -30,13 +30,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Bouton Home
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         // Definition du nom du gerant dans le TextView
         Intent intent = getIntent();
         titre_bienvenue = findViewById(R.id.titre_bienvenue);
-        if (intent != null && intent.getStringExtra("gerant") != null)
+        if (intent != null && intent.getStringExtra("gerant") != null) {
+
+            // Message de bienvenue
             titre_bienvenue.setText(String.format(
                     "Bienvenue %s !", intent.getStringExtra("gerant")));
 
+            // Titre action bar
+            getSupportActionBar().setTitle("LokaCar " + intent.getStringExtra("nomAgence"));
+
+        }
 
         /*
          * Google Charting API
@@ -44,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
          * https://developers.google.com/chart/image/docs/gallery/pie_charts
          */
         WebView webviewCamembert = findViewById(R.id.camembert_locations);
-        webviewCamembert.loadUrl("http://chart.apis.google.com/chart?cht=p3&chs=376x150&chco=0000FF" +
+        webviewCamembert.loadUrl("http://chart.apis.google.com/chart?cht=p3&chs=376x150&chco=2E4053" +
                 "&chd=t:60,40&chdl=louees|disponibles");
 
         WebView webviewBars = findViewById(R.id.bars_locations);
-        webviewBars.loadUrl("http://chart.apis.google.com/chart?cht=bvs&chs=500x200&chco=4D89F9,C6D9FD" +
-                "&chd=t:80,10,60,20&chxt=x,y&chxl=0:|Jan|Fev|Mar|Avr");
+        webviewBars.loadUrl("http://chart.apis.google.com/chart?cht=bvs&chs=500x200&chco=2E4053" +
+                "&chd=t:80,10,60,20,50,10,80&chxt=x,y&chxl=0:|Jan|Fev|Mar|Avr|Mai|Juin|Juil");
 
     }
 
@@ -65,10 +74,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+
         switch (item.getItemId()) {
 
+            case android.R.id.home:
+                // ne rien faire
+                break;
+
             case R.id.mes_voitures:
-                Intent intent = new Intent(MainActivity.this, MesVoituresActivity.class);
+                intent = new Intent(MainActivity.this, MesVoituresActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.deconnexion:
+                intent = new Intent(MainActivity.this, AuthActivity.class);
                 startActivity(intent);
                 break;
         }

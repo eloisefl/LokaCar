@@ -9,39 +9,33 @@
     android:padding="15dp"
     tools:context=".AjouterVoitureActivity">
 
-    <TextView
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Ajouter une/des voiture(s)"/>
-
-    <!-- Immatriculation -->
+    <!-- Immatriculation
     <TextView
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dp"
-        android:text="Immatriculation(s) - separées par des virgules - :"/>
+        android:textSize="18dp"
+        android:text="Immatriculation(s) (si plusieurs separées par des virgules) :"/>
+       -->
 
     <EditText
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrez la (ou les) immatriculation(s) "/>
+        android:hint="Immatriculation(s) (si plusieurs separées par des virgules) "/>
 
     <!-- Nombre de portes -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.4"
             android:layout_height="wrap_content"
             android:textSize="17dp"
-            android:text="Nb de portes :"/>
+            android:text="Portes :"/>
 
         <Spinner
             android:id="@+id/nb_portes_spinner"
@@ -55,7 +49,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -75,7 +69,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -107,7 +101,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -134,7 +128,7 @@
         </RadioGroup>
     </LinearLayout>
 
-    <!-- Puissance moteur -->
+    <!-- Puissance moteur
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -146,17 +140,18 @@
             android:layout_height="wrap_content"
             android:textSize="17dp"
             android:text="Puissance du moteur :"/>
-
+-->
         <EditText
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=""/>
+            android:hint="Puissance du moteur"/>
+    <!--
     </LinearLayout>
+    -->
 
     <!-- Photos -->
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17dp"
@@ -171,7 +166,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="match_parent"
-            android:text="Selectionner une photo"/>
+            android:text="Choisir une photo"/>
 
         <Button
             android:layout_width="0dp"
@@ -182,11 +177,10 @@
     </LinearLayout>
 
     <!-- Type locatif -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
@@ -206,21 +200,30 @@
     <!-- Btn valider & annuler -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
+            android:padding="0dp"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:layout_height="match_parent"
-            android:text="Valider"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"
+            android:scaleType="fitCenter"
+            android:src="@drawable/nope"
             android:text="Annuler"/>
+
+        <ImageButton
+            android:padding="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="50dp"
+            android:src="@drawable/yass"
+            android:scaleType="fitCenter"
+            android:backgroundTint="#ffffff"
+            android:text="Valider"/>
 
     </LinearLayout>
 

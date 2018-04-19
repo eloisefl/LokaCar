@@ -44,6 +44,10 @@ public class MesVoituresActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mes_voitures);
 
+        // Bouton Home
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Mes voitures");
+
         // Récuperation des deux fragments
         voituresFragment = (ListeVoituresFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.voiture_fragment);
@@ -75,10 +79,22 @@ public class MesVoituresActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+
         switch (item.getItemId()) {
+
+            case android.R.id.home:
+                intent = new Intent(MesVoituresActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
 
             case R.id.mes_voitures:
                 // ne rien faire
+                break;
+
+            case R.id.deconnexion:
+                intent = new Intent(MesVoituresActivity.this, AuthActivity.class);
+                startActivity(intent);
                 break;
 
         }

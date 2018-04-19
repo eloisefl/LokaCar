@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#A04000</color>
+    <color name="colorSecond">#D35400</color>
+    <color name="colorThird">#E59866</color>
+    <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#FFFFFF</color>
+    <color name="camembert_dark">#34495E</color>
+    <color name="camembert_clear">#AEB6BF</color>
 </resources>
