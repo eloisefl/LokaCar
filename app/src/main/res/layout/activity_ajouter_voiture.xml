@@ -14,7 +14,6 @@
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
         android:text="Immatriculation(s) (si plusieurs separées par des virgules) :"/>
        -->
 
@@ -27,42 +26,40 @@
     <!-- Nombre de portes -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.4"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
             android:text="Portes :"/>
 
         <Spinner
             android:id="@+id/nb_portes_spinner"
             android:layout_width="0dp"
             android:layout_weight="0.6"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <!-- Marque -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.4"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
             android:text="Marque :"/>
 
         <Spinner
             android:id="@+id/marques_spinner"
             android:layout_width="0dp"
             android:layout_weight="0.6"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"/>
     </LinearLayout>
 
     <!-- Disponible a la location -->
@@ -73,25 +70,26 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
             android:text="Disponible :"/>
 
         <RadioGroup
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton android:id="@+id/ck_dispo_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
                 android:text="Oui"/>
 
             <RadioButton android:id="@+id/ck_non_dispo_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
                 android:text="Non"/>
 
         </RadioGroup>
@@ -107,7 +105,6 @@
             android:layout_width="0dp"
             android:layout_weight="0.4"
             android:layout_height="match_parent"
-            android:textSize="17dp"
             android:text="Carburant : "/>
 
         <RadioGroup
@@ -119,11 +116,13 @@
             <RadioButton android:id="@+id/ck_essence"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:buttonTint="@color/black"
                 android:text="Essence"/>
 
             <RadioButton android:id="@+id/ck_diesel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
                 android:text="Diesel"/>
         </RadioGroup>
     </LinearLayout>
@@ -138,7 +137,6 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
             android:text="Puissance du moteur :"/>
 -->
         <EditText
@@ -154,7 +152,6 @@
         android:layout_marginTop="@dimen/add_car_marginTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dp"
         android:text="Photos :"/>
 
     <LinearLayout
@@ -176,23 +173,22 @@
 
     </LinearLayout>
 
-    <!-- Type locatif -->
+    <!-- Tarifs et Types Locatif -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="@dimen/add_car_marginTop"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
-            android:text="Type locatif (et prix)"/>
+            android:text="Type et Prix"/>
 
         <Spinner
-            android:id="@+id/typeLocatif_spinner"
+            android:id="@+id/tarifs_spinner"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             android:layout_height="wrap_content"
             android:spinnerMode="dialog"/>
     </LinearLayout>

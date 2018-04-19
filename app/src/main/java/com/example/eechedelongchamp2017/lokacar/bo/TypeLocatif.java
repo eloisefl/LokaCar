@@ -11,6 +11,15 @@ public class TypeLocatif {
     public TypeLocatif() {
     }
 
+    public TypeLocatif(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
+    public TypeLocatif(String nom) {
+        this.nom = nom;
+    }
+
     public TypeLocatif(int id, String nom, List<Voiture> voitures, Tarif tarif) {
         this.id = id;
         this.nom = nom;

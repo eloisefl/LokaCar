@@ -12,8 +12,14 @@ import android.widget.TextView;
 import com.example.eechedelongchamp2017.lokacar.bo.Agence;
 import com.example.eechedelongchamp2017.lokacar.bo.DataContract;
 import com.example.eechedelongchamp2017.lokacar.bo.Gerant;
+import com.example.eechedelongchamp2017.lokacar.bo.Marque;
+import com.example.eechedelongchamp2017.lokacar.bo.Tarif;
+import com.example.eechedelongchamp2017.lokacar.bo.TypeLocatif;
 import com.example.eechedelongchamp2017.lokacar.dal.AgenceDao;
 import com.example.eechedelongchamp2017.lokacar.dal.GerantDao;
+import com.example.eechedelongchamp2017.lokacar.dal.MarqueDao;
+import com.example.eechedelongchamp2017.lokacar.dal.TarifDao;
+import com.example.eechedelongchamp2017.lokacar.dal.TypeLocatifDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,24 +33,24 @@ public class AuthActivity extends AppCompatActivity {
     private EditText editionMdp;
  //   private Button boutonValidation;
 
-
+    private MarqueDao daoMarque;
+    private TypeLocatifDao daoTypeLoc;
+    private TarifDao daoTarif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
+        // Init dao
         gerantDao = new GerantDao(AuthActivity.this);
-/*
-        // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
-        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null, "0884541628", "eloise.frechede@free.fr", "efrechede", "123");
-        gerantDao.insertGerant(gerant);
+        daoMarque = new MarqueDao(AuthActivity.this);
+        daoTypeLoc = new TypeLocatifDao(AuthActivity.this);
+        daoTarif = new TarifDao(AuthActivity.this);
 
-        // 1ère insertion dans la base Agence :
-        Agence agence = new Agence("NANTES", null, new Gerant(1));
-        agenceDao = new AgenceDao(AuthActivity.this);
-        agenceDao.insertAgence(agence);
-*/
+        // Init des données
+        initData();
+
     }
 
     public void onValidationClick(View view){
@@ -73,6 +79,40 @@ public class AuthActivity extends AppCompatActivity {
                 editionInconnu.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    public void initData() {
+
+        // 1ère insertion dans la base Gérant pour pouvoir s'identifier :
+        Gerant gerant = new Gerant("FRECHEDE", "Eloïse", null,
+                "0884541628", "eloise.frechede@free.fr", "efrechede", "123");
+        gerantDao.insertGerant(gerant);
+
+        // 1ère insertion dans la base Agence :
+        Agence agence = new Agence("NANTES", null, new Gerant(1));
+        agenceDao = new AgenceDao(AuthActivity.this);
+        agenceDao.insertAgence(agence);
+
+        // Insert MARQUES
+        daoMarque.insert(new Marque("Renault"));
+        daoMarque.insert(new Marque("Nissan"));
+        daoMarque.insert(new Marque("Porsche"));
+        daoMarque.insert(new Marque("Batmobile"));
+
+        // Insert TYPE LOCATIF & PRIX
+        TypeLocatif troisportes = new TypeLocatif("3 portes");
+        TypeLocatif cinqportes = new TypeLocatif("5 portes");
+        TypeLocatif familiale = new TypeLocatif("familiale");
+        daoTypeLoc.insert(troisportes);
+        daoTypeLoc.insert(cinqportes);
+        daoTypeLoc.insert(familiale);
+
+        daoTarif.insert(new Tarif(40, true, false, troisportes));
+        daoTarif.insert(new Tarif(25, false, true, troisportes));
+        daoTarif.insert(new Tarif(70, true, false, cinqportes));
+        daoTarif.insert(new Tarif(50, false, true, cinqportes));
+        daoTarif.insert(new Tarif(100, true, false, familiale));
+        daoTarif.insert(new Tarif(70, false, true, familiale));
     }
 
 }

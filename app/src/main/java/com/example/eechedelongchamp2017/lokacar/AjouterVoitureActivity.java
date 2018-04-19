@@ -3,18 +3,37 @@ package com.example.eechedelongchamp2017.lokacar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.eechedelongchamp2017.lokacar.adapter.TarifArrayAdapter;
+import com.example.eechedelongchamp2017.lokacar.bo.Marque;
+import com.example.eechedelongchamp2017.lokacar.bo.Tarif;
+import com.example.eechedelongchamp2017.lokacar.bo.TypeLocatif;
+import com.example.eechedelongchamp2017.lokacar.dal.MarqueDao;
+import com.example.eechedelongchamp2017.lokacar.dal.TarifDao;
+import com.example.eechedelongchamp2017.lokacar.dal.TypeLocatifDao;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AjouterVoitureActivity extends AppCompatActivity {
+
+    private MarqueDao daoMarque;
+    private TarifDao daoTarif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_voiture);
+
+        // Init dao
+        daoMarque = new MarqueDao(AjouterVoitureActivity.this);
+        daoTarif = new TarifDao(AjouterVoitureActivity.this);
 
         // Bouton Home
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -27,9 +46,25 @@ public class AjouterVoitureActivity extends AppCompatActivity {
         nb_portes_spinner.setAdapter(adapter);
 
         // Spinner marques
-        
+        Spinner marques_spinner = findViewById(R.id.marques_spinner);
+        List<Marque> marques = daoMarque.selectAll();
+        List<String> marquesString = new ArrayList<>();
+        for (Marque m : marques) {
+            marquesString.add(m.getNom());
+        }
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, marquesString);
+        marques_spinner.setAdapter(adapter);
 
         // Spinner types locatif & prix
+        Spinner typeLocatif_spinner = findViewById(R.id.tarifs_spinner);
+        List<Tarif> tarifs = daoTarif.selectAll();
+
+        for (Tarif t: tarifs) {
+            Log.i("TAG", t.toString());
+        }
+
+        TarifArrayAdapter adapterTarif = new TarifArrayAdapter(this, R.layout.tarif_adapter_layout, R.id.spinnerprix_prix, tarifs);
+        typeLocatif_spinner.setAdapter(adapterTarif);
 
     }
 

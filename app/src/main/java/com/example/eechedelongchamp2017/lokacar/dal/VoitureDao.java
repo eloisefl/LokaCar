@@ -71,7 +71,7 @@ public class VoitureDao {
         return values;
     }
 
-    // Get Voiture
+    // Get Voiture from cursor
     private Voiture getVoiture(Cursor cursor) {
 
         boolean isEssence = false, isDiesel = false, isLoue = false, isDisponible = true;

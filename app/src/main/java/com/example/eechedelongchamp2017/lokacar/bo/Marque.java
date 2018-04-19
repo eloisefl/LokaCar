@@ -13,6 +13,15 @@ public class Marque {
 
     }
 
+    public Marque(String nom) {
+        this.nom = nom;
+    }
+
+    public Marque(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
     public Marque(int id, String nom, List<Voiture> voitures, Modele modele) {
         this.id = id;
         this.nom = nom;

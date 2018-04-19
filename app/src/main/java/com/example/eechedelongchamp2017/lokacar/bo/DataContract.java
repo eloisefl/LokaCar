@@ -71,7 +71,7 @@ public abstract class DataContract {
                     + COL_NOM + " text NOT NULL)";
 
     // table Tarif
-    public final static String NOM_TABLE_TARIF = "Modele";
+    public final static String NOM_TABLE_TARIF = "Tarif";
     public final static String _PRIX = "prix";
     public final static String _IS_SAISON_HAUTE = "isSaisonHaute";
     public final static String _IS_SAISON_BASSE = "isSaisonBasse";
@@ -83,7 +83,7 @@ public abstract class DataContract {
                     + _IS_SAISON_HAUTE + " integer NOT NULL,"
                     + _IS_SAISON_BASSE + " integer NOT NULL,"
                     + _ID_TYPE_LOCATIF + " integer NOT NULL,"
-                    + "FOREIGN KEY ("+_ID_MARQUE+") REFERENCES "+NOM_TABLE_MARQUE+"("+COL_ID+")"
+                    + "FOREIGN KEY ("+_ID_TYPE_LOCATIF+") REFERENCES "+NOM_TABLE_TYPE_LOCATIF+"("+COL_ID+")"
             +")";
 
     // table Voiture

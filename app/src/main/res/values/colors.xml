@@ -7,4 +7,5 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="camembert_dark">#34495E</color>
     <color name="camembert_clear">#AEB6BF</color>
+    <color name="black">#000</color>
 </resources>

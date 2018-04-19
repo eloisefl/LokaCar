@@ -5,8 +5,16 @@ public class Tarif {
     private float prixJournalier;
     private boolean isSaisonHaute;
     private boolean isSaisonBasse;
+    private TypeLocatif typeLocatif;
 
     public Tarif() {
+    }
+
+    public Tarif(float prixJournalier, boolean isSaisonHaute, boolean isSaisonBasse, TypeLocatif typeLocatif) {
+        this.prixJournalier = prixJournalier;
+        this.isSaisonHaute = isSaisonHaute;
+        this.isSaisonBasse = isSaisonBasse;
+        this.typeLocatif = typeLocatif;
     }
 
     public Tarif(int id, float prixJournalier, boolean isSaisonHaute, boolean isSaisonBasse) {
@@ -14,6 +22,14 @@ public class Tarif {
         this.prixJournalier = prixJournalier;
         this.isSaisonHaute = isSaisonHaute;
         this.isSaisonBasse = isSaisonBasse;
+    }
+
+    public Tarif(int id, float prixJournalier, boolean isSaisonHaute, boolean isSaisonBasse, TypeLocatif typeLocatif) {
+        this.id = id;
+        this.prixJournalier = prixJournalier;
+        this.isSaisonHaute = isSaisonHaute;
+        this.isSaisonBasse = isSaisonBasse;
+        this.typeLocatif = typeLocatif;
     }
 
     public int getId() {
@@ -48,6 +64,14 @@ public class Tarif {
         isSaisonBasse = saisonBasse;
     }
 
+    public TypeLocatif getTypeLocatif() {
+        return typeLocatif;
+    }
+
+    public void setTypeLocatif(TypeLocatif typeLocatif) {
+        this.typeLocatif = typeLocatif;
+    }
+
     @Override
     public String toString() {
         return "Tarif{" +
@@ -55,6 +79,7 @@ public class Tarif {
                 ", prixJournalier=" + prixJournalier +
                 ", isSaisonHaute=" + isSaisonHaute +
                 ", isSaisonBasse=" + isSaisonBasse +
+                ", typeLocatif=" + typeLocatif +
                 '}';
     }
 }
