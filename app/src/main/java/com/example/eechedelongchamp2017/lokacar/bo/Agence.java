@@ -26,6 +26,13 @@ public class Agence {
         this.parcVoiture = parcVoiture;
     }
 
+    public Agence(int id, String nomAgence, Adresse adresse, Gerant gerant) {
+        this.id = id;
+        this.nomAgence = nomAgence;
+        this.adresse = adresse;
+        this.gerant = gerant;
+    }
+
     public Agence(int id, String nomAgence, Adresse adresse, Gerant gerant, List<Voiture> parcVoiture) {
         this.id = id;
         this.nomAgence = nomAgence;

@@ -24,6 +24,16 @@ public class Gerant extends Personne {
         this.mdp = mdp;
     }
 
+    public Gerant(int id, String nom, String prenom, Adresse adresse, String tel, String email) {
+        super();
+        this.id = id;
+        this.setNom(nom);
+        this.setPrenom(prenom);
+        this.setAdresse(adresse);
+        this.setTel(tel);
+        this.setEmail(email);
+    }
+
     public Gerant(int id, String nom, String prenom, Adresse adresse, String tel, String email, String login, String mdp) {
         super();
         this.id = id;

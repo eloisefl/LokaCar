@@ -3,12 +3,14 @@ package com.example.eechedelongchamp2017.lokacar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.eechedelongchamp2017.lokacar.bo.Agence;
+import com.example.eechedelongchamp2017.lokacar.bo.DataContract;
 import com.example.eechedelongchamp2017.lokacar.bo.Gerant;
 import com.example.eechedelongchamp2017.lokacar.dal.AgenceDao;
 import com.example.eechedelongchamp2017.lokacar.dal.GerantDao;
@@ -60,12 +62,17 @@ public class AuthActivity extends AppCompatActivity {
                  &&
                  gerant.getMdp().toString().equalsIgnoreCase(editionMdp.getText().toString()) )
             {
-                intent.putExtra("gerant", gerant.getNom()+ " " + gerant.getPrenom());
+               Log.i("GERANT", gerant.toString());
+                agenceDao = new AgenceDao(AuthActivity.this);
+                Agence agence = agenceDao.selectById(gerant.getId()) ;
+                intent.putExtra("nomAgence", agence.getNomAgence());
+                intent.putExtra("gerant", gerant.getNom() + " " + gerant.getPrenom());
                 startActivity(intent);
+                break;
             }else {
                 editionInconnu.setVisibility(View.VISIBLE);
             }
         }
-
     }
+
 }

@@ -73,4 +73,38 @@ public class GerantDao {
         db.insert(DataContract.NOM_TABLE_GERANT,null, values);
     }
 
+    public Gerant selectById(int id){
+        Gerant gerant = null;
+
+        Cursor c = db.query(
+                DataContract.NOM_TABLE_GERANT,
+                new String[]{
+                        DataContract.COL_ID,
+                        DataContract.COL_NOM,
+                        DataContract.COL_PRENOM,
+                        DataContract.COL_ADRESSE,
+                        DataContract.COL_TEL,
+                        DataContract.COL_EMAIL
+                },
+                " ID = " + id,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (c != null && c.moveToFirst())
+        {
+            gerant = new Gerant(
+                    c.getInt(c.getColumnIndex(DataContract.COL_ID)),
+                    c.getString(c.getColumnIndex(DataContract.COL_NOM)),
+                    c.getString(c.getColumnIndex(DataContract.COL_PRENOM)),
+                    null,
+                    c.getString(c.getColumnIndex(DataContract.COL_TEL)),
+                    c.getString(c.getColumnIndex(DataContract.COL_EMAIL))
+            );
+        }
+        return gerant;
+    }
+
 }
