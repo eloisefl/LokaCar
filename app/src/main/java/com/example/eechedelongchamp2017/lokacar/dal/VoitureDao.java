@@ -9,6 +9,7 @@ import com.example.eechedelongchamp2017.lokacar.bo.Agence;
 import com.example.eechedelongchamp2017.lokacar.bo.DataContract;
 import com.example.eechedelongchamp2017.lokacar.bo.Location;
 import com.example.eechedelongchamp2017.lokacar.bo.Marque;
+import com.example.eechedelongchamp2017.lokacar.bo.Modele;
 import com.example.eechedelongchamp2017.lokacar.bo.TypeLocatif;
 import com.example.eechedelongchamp2017.lokacar.bo.Voiture;
 import com.example.eechedelongchamp2017.lokacar.helper.GestionBddHelper;
@@ -20,9 +21,17 @@ import java.util.List;
 public class VoitureDao {
 
     private GestionBddHelper dbHelper;
+    private MarqueDao daoMarque;
+    private TypeLocatifDao daoTypeLoc;
+    private AgenceDao daoAgence;
+    private ModeleDao daoModele;
 
     public VoitureDao(Context context) {
         this.dbHelper = new GestionBddHelper(context);
+        daoMarque = new MarqueDao(context);
+        daoTypeLoc = new TypeLocatifDao(context);
+        daoAgence = new AgenceDao(context);
+        daoModele = new ModeleDao(context);
     }
 
     // Get ContentValues
@@ -65,6 +74,7 @@ public class VoitureDao {
          */
 
         values.put(DataContract._ID_MARQUE, voiture.getMarque().getId());
+        values.put(DataContract._ID_MODELE, voiture.getMarque().getModele().getId());
         values.put(DataContract._ID_TYPE_LOCATIF, voiture.getTypeLocatif().getId());
         values.put(DataContract._ID_AGENCE, voiture.getAgence().getId());
 
@@ -95,10 +105,20 @@ public class VoitureDao {
             isDisponible = false;
 
         Blob photoContent = null;
-        Marque marque = null;
-        TypeLocatif typeLocatif = null;
         List<Location> locations = null;
-        Agence agence = null;
+
+        int idMarque = cursor.getInt(cursor.getColumnIndex(DataContract._ID_MARQUE));
+        Marque marque = daoMarque.selectById(idMarque);
+
+        int idModele = cursor.getInt(cursor.getColumnIndex(DataContract._ID_MODELE));
+        Modele modele = daoModele.selectById(idModele);
+        marque.setModele(modele);
+
+        int idTypeLoc = cursor.getInt(cursor.getColumnIndex(DataContract._ID_TYPE_LOCATIF));
+        TypeLocatif typeLocatif = daoTypeLoc.selectById(idTypeLoc);
+
+        int idAgence = cursor.getInt(cursor.getColumnIndex(DataContract._ID_AGENCE));
+        Agence agence = daoAgence.selectById(idAgence);
 
         return new Voiture(immatriculation, nbPortes, nbPlaces, isEssence, isDiesel, puissanceMoteur, marque,
                 isLoue, isDisponible, photoNom, photoContent, typeLocatif, locations, agence);
@@ -161,15 +181,47 @@ public class VoitureDao {
     }
 
     // Select all par Modele
-    /*
-    public List<Voiture> selectAllbyModele(int idModele) {
+    public List<Voiture> selectAllbyModele() {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(
                 DataContract.NOM_TABLE_VOITURE,
                 null,
-                DataContract.COL_ID + " = ?",
-                new String[]{""+idModele},
+                null,
+                null,
+                null,
+                null,
+                DataContract._ID_MARQUE);
+
+        List<Voiture> objects = new ArrayList<>() ;
+        List<Integer> idsModeles = new ArrayList<>();
+
+        if(cursor != null && cursor.moveToFirst()){
+
+            while (cursor.moveToNext()) {
+                Voiture v = getVoiture(cursor);
+
+                if (!idsModeles.contains(v.getMarque().getModele().getId())) {
+                    idsModeles.add(v.getMarque().getModele().getId());
+                    objects.add(v);
+                }
+            }
+
+            cursor.close();
+        }
+
+        return objects;
+    }
+
+    // Select all par Modele
+    public List<Voiture> selectAllbyModele(int id) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+                DataContract.NOM_TABLE_VOITURE,
+                null,
+                DataContract._ID_MODELE+" = "+id,
+                null,
                 null,
                 null,
                 DataContract._ID_MARQUE);
@@ -187,7 +239,6 @@ public class VoitureDao {
 
         return objects;
     }
-    */
 
     // Insert
     public void insert(Voiture voiture){
@@ -202,7 +253,7 @@ public class VoitureDao {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        Cursor c = db.query(DataContract.CREATE_TABLE_VOITURE, null,
+        Cursor c = db.query(DataContract.NOM_TABLE_VOITURE, null,
                 DataContract._IMMATRICULATION+" = "+voiture.getImmatriculation(),
                 null,null,null,null);
 

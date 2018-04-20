@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,6 +41,14 @@ public class MesVoituresGenreActivity extends AppCompatActivity
         // Données de la ListView
         dao = new VoitureDao(MesVoituresGenreActivity.this);
         List<Voiture> list = dao.selectAll();
+        Intent intent = getIntent();
+        if (intent != null) {
+            Voiture v = intent.getParcelableExtra("voiture");
+            Marque ma = intent.getParcelableExtra("marque");
+            Modele mo = intent.getParcelableExtra("modele");
+            Log.i("VOITURE_GENRE_ACTIVITY", v.toString());
+            list = dao.selectAllbyModele(mo.getId());
+        }
 
         // ListView
         listview_voituresgenres = findViewById(R.id.listview_voituresgenres);
@@ -83,6 +92,7 @@ public class MesVoituresGenreActivity extends AppCompatActivity
             case R.id.deconnexion:
                 intent = new Intent(MesVoituresGenreActivity.this, AuthActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
         }

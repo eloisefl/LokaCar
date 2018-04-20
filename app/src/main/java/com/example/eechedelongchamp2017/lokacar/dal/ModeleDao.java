@@ -4,52 +4,51 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.eechedelongchamp2017.lokacar.bo.DataContract;
-import com.example.eechedelongchamp2017.lokacar.bo.Tarif;
-import com.example.eechedelongchamp2017.lokacar.bo.TypeLocatif;
+import com.example.eechedelongchamp2017.lokacar.bo.Marque;
+import com.example.eechedelongchamp2017.lokacar.bo.Modele;
 import com.example.eechedelongchamp2017.lokacar.helper.GestionBddHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeLocatifDao {
+public class ModeleDao {
 
     private GestionBddHelper dbHelper;
-    private TarifDao dao;
+    private MarqueDao daoMarque;
 
-    public TypeLocatifDao(Context context) {
+    public ModeleDao(Context context) {
         this.dbHelper = new GestionBddHelper(context);
-        // dao = new TarifDao(context);
+        daoMarque = new MarqueDao(context);
     }
 
     // Get ContentValues (without id)
-    private ContentValues getContentValues(TypeLocatif obj) {
+    private ContentValues getContentValues(Modele obj) {
         ContentValues values = new ContentValues();
         values.put(DataContract.COL_NOM, obj.getNom());
+        values.put(DataContract._ID_MARQUE, obj.getMarque().getId());
         return values;
     }
 
-    // Get TypeLocatif from cursor
-    private TypeLocatif getTypeLocatif(Cursor cursor) {
+    // Get Modele from cursor
+    private Modele getModele(Cursor cursor) {
 
         int id = cursor.getInt(cursor.getColumnIndex(DataContract.COL_ID));
         String nom = cursor.getString(cursor.getColumnIndex(DataContract.COL_NOM));
 
-        // List<Tarif> tarifs = dao.selectByTypeLoc(id);
+        int idMarque = cursor.getInt(cursor.getColumnIndex(DataContract._ID_MARQUE));;
+        Marque marque = daoMarque.selectById(idMarque);
 
-        // return new TypeLocatif(id, nom, tarifs);
-        return new TypeLocatif(id, nom);
-
+        return new Modele(id, nom, marque);
     }
 
     // select all
-    public List<TypeLocatif> selectAll() {
+    public List<Modele> selectAll() {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(
-                DataContract.NOM_TABLE_TYPE_LOCATIF,
+                DataContract.NOM_TABLE_MODELE,
                 null,
                 null,
                 null,
@@ -57,11 +56,36 @@ public class TypeLocatifDao {
                 null,
                 null);
 
-        List<TypeLocatif> objects = new ArrayList<>() ;
+        List<Modele> objects = new ArrayList<>() ;
 
         if(cursor != null && cursor.moveToFirst()){
             while (cursor.moveToNext()) {
-                objects.add(getTypeLocatif(cursor));
+                objects.add(getModele(cursor));
+            }
+            cursor.close();
+        }
+
+        return objects;
+    }
+
+    // select all by marque
+    public List<Modele> selectAllByMarque(int idMarque) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+                DataContract.NOM_TABLE_MODELE,
+                null,
+                DataContract._ID_MARQUE+" = "+idMarque,
+                null,
+                null,
+                null,
+                null);
+
+        List<Modele> objects = new ArrayList<>() ;
+
+        if(cursor != null && cursor.moveToFirst()){
+            while (cursor.moveToNext()) {
+                objects.add(getModele(cursor));
             }
             cursor.close();
         }
@@ -70,13 +94,13 @@ public class TypeLocatifDao {
     }
 
     // select by id
-    public TypeLocatif selectById(int id) {
+    public Modele selectById(int id) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        TypeLocatif typeLocatif = null;
+        Modele modele = null;
 
         Cursor cursor = db.query(
-                DataContract.NOM_TABLE_TYPE_LOCATIF,
+                DataContract.NOM_TABLE_MODELE,
                 null,
                 DataContract.COL_ID + " = " + id,
                 null,
@@ -85,18 +109,18 @@ public class TypeLocatifDao {
                 null);
 
         if(cursor != null && cursor.moveToFirst()){
-            typeLocatif = getTypeLocatif(cursor);
+            modele = getModele(cursor);
             cursor.close();
         }
 
-        return typeLocatif;
+        return modele;
     }
 
     // Insert
-    public void insert(TypeLocatif obj){
+    public void insert(Modele obj){
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long id = db.insert(DataContract.NOM_TABLE_TYPE_LOCATIF, null, getContentValues(obj));
+        long id = db.insert(DataContract.NOM_TABLE_MODELE, null, getContentValues(obj));
         obj.setId((int)id);
         db.close();
     }
@@ -105,7 +129,7 @@ public class TypeLocatifDao {
     public int delete(int id) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int res = db.delete(DataContract.NOM_TABLE_TYPE_LOCATIF,
+        int res = db.delete(DataContract.NOM_TABLE_MODELE,
                 DataContract.COL_ID + " = ?",
                 new String[]{String.valueOf(id)});
         return res;

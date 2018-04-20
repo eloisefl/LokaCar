@@ -68,7 +68,7 @@ public class RecycledVoituresAdapter extends RecyclerView.Adapter<RecycledVoitur
                 voitures.get(position).getMarque().getNom(),
                 voitures.get(position).getMarque().getModele().getNom())
         );
-        holder.voiture_dispo.setText(String.format("%d", 0));
+        holder.voiture_dispo.setText(String.format("%d", 2));
         holder.voiture_photo.setImageResource(R.drawable.porsche);
 
         holder.myview.setOnClickListener(new View.OnClickListener() {

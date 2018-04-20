@@ -48,13 +48,13 @@ public class TarifDao {
         int id = cursor.getInt(cursor.getColumnIndex(DataContract.COL_ID));
         float prixJournalier = cursor.getFloat(cursor.getColumnIndex(DataContract._PRIX));
 
-        boolean isSaisonHaute = true, isSaisonBasse = false;
-        if (cursor.getInt(cursor.getColumnIndex(DataContract._IS_SAISON_HAUTE)) != 1)
-            isSaisonHaute = false;
-        if (cursor.getInt(cursor.getColumnIndex(DataContract._IS_SAISON_BASSE)) == 1)
+        boolean isSaisonHaute = false, isSaisonBasse = false;
+        if (cursor.getInt(cursor.getColumnIndex(DataContract._IS_SAISON_HAUTE)) == 1)
             isSaisonHaute = true;
+        if (cursor.getInt(cursor.getColumnIndex(DataContract._IS_SAISON_BASSE)) == 1)
+            isSaisonBasse = true;
 
-        int idTypeLocatif = cursor.getColumnIndex(DataContract._ID_TYPE_LOCATIF);
+        int idTypeLocatif = cursor.getInt(cursor.getColumnIndex(DataContract._ID_TYPE_LOCATIF));
         TypeLocatif typeLocatif = daoTypeLoc.selectById(idTypeLocatif);
 
         return new Tarif(id, prixJournalier, isSaisonHaute, isSaisonBasse, typeLocatif);
@@ -68,6 +68,31 @@ public class TarifDao {
                 DataContract.NOM_TABLE_TARIF,
                 null,
                 null,
+                null,
+                null,
+                null,
+                null);
+
+        List<Tarif> objects = new ArrayList<>() ;
+
+        if(cursor != null && cursor.moveToFirst()){
+            while (cursor.moveToNext()) {
+                objects.add(getTarif(cursor));
+            }
+            cursor.close();
+        }
+
+        return objects;
+    }
+
+    // select all
+    public List<Tarif> selectByTypeLoc(int idTypeLoc) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+                DataContract.NOM_TABLE_TARIF,
+                null,
+                DataContract._ID_TYPE_LOCATIF+" = "+idTypeLoc,
                 null,
                 null,
                 null,

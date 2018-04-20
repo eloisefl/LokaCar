@@ -1,6 +1,9 @@
 package com.example.eechedelongchamp2017.lokacar.bo;
 
-public class Modele {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Modele implements Parcelable {
 
     private int id;
     private String nom;
@@ -10,11 +13,46 @@ public class Modele {
 
     }
 
+    public Modele(String nom, Marque marque) {
+        this.nom = nom;
+        this.marque = marque;
+    }
+
     public Modele(int id, String nom, Marque marque) {
         this.id = id;
         this.nom = nom;
         this.marque = marque;
     }
+
+    protected Modele(Parcel in) {
+        id = in.readInt();
+        nom = in.readString();
+        marque = in.readParcelable(Marque.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nom);
+        dest.writeParcelable(marque, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Modele> CREATOR = new Creator<Modele>() {
+        @Override
+        public Modele createFromParcel(Parcel in) {
+            return new Modele(in);
+        }
+
+        @Override
+        public Modele[] newArray(int size) {
+            return new Modele[size];
+        }
+    };
 
     public int getId() {
         return id;

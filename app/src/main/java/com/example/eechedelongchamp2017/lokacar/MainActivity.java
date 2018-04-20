@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.deconnexion:
                 intent = new Intent(MainActivity.this, AuthActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
 
@@ -100,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, AjouterVoitureActivity.class);
         startActivity(intent);
+
+    }
+
+    public void clickAfiicherMonProfil(View view) {
 
     }
 }

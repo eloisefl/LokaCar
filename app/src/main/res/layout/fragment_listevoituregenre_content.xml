@@ -93,7 +93,54 @@
 
 
         </LinearLayout>
-        
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:gravity="end"
+                android:text="Saison haute:" />
+
+            <TextView
+                android:id="@+id/voiture_detail_saisonHaute"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="40 euros "/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:gravity="end"
+                android:text="Saison basse:" />
+
+            <TextView
+                android:id="@+id/voiture_detail_saisonBasse"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="35 euros "/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -36,6 +36,7 @@ public class MesVoituresActivity extends AppCompatActivity
     private MesVoituresGenreAdapter adapter;
 
     private String LOG_TAG = "TAG_LOKACAR";
+    private int idSelectedModel;
 
     private VoitureDao dao;
 
@@ -56,13 +57,15 @@ public class MesVoituresActivity extends AppCompatActivity
 
         // Données Fragment
         dao = new VoitureDao(MesVoituresActivity.this);
-        List<Voiture> list = dao.selectAll();
+        List<Voiture> list = dao.selectAllbyModele();
         voituresFragment.setAdapteer(new RecycledVoituresAdapter(list,MesVoituresActivity.this));
 
         // Données ListeView
         if (voituresGenreFragment != null && voituresGenreFragment.isInLayout()) {
+            list = dao.selectAllbyModele();
             listview_voituresgenres = findViewById(R.id.listview_voituresgenres);
-            adapter = new MesVoituresGenreAdapter(MesVoituresActivity.this, R.layout.fragment_mes_voiture_genre_content, list);
+            adapter = new MesVoituresGenreAdapter(MesVoituresActivity.this,
+                    R.layout.fragment_mes_voiture_genre_content, list);
             listview_voituresgenres.setAdapter(adapter);
         }
     }
@@ -95,6 +98,7 @@ public class MesVoituresActivity extends AppCompatActivity
             case R.id.deconnexion:
                 intent = new Intent(MesVoituresActivity.this, AuthActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
         }
@@ -110,6 +114,8 @@ public class MesVoituresActivity extends AppCompatActivity
 
         Intent intent = new Intent(MesVoituresActivity.this, MesVoituresGenreActivity.class);
         intent.putExtra("voiture", item);
+        intent.putExtra("marque", item.getMarque());
+        intent.putExtra("modele", item.getMarque().getModele());
         startActivity(intent);
 
     }

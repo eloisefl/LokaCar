@@ -66,7 +66,7 @@
             android:hint="@string/votreMdp" />
 
         <Button
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="100dp"
             android:id="@+id/buttonValidation"
             android:layout_width="wrap_content"

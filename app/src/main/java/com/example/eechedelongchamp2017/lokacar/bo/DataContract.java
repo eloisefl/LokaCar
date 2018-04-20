@@ -99,6 +99,7 @@ public abstract class DataContract {
     public final static String _PHOTO_NOM = "photoNom";
     public final static String _PHOTO_CONTENT = "photoContent";
     public final static String _ID_AGENCE = "idAgence";
+    public final static String _ID_MODELE = "idModele";
     public final static String CREATE_TABLE_VOITURE =
             "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_VOITURE + " ("
                     + _IMMATRICULATION + " text NOT NULL PRIMARY KEY, "
@@ -112,9 +113,11 @@ public abstract class DataContract {
                     + _PHOTO_NOM + " text, "
                     + _PHOTO_CONTENT + " blob, "
                     + _ID_MARQUE + " integer NOT NULL, "
+                    + _ID_MODELE + " integer NOT NULL, "
                     + _ID_TYPE_LOCATIF + " integer NOT NULL, "
                     + _ID_AGENCE + " integer NOT NULL, "
                     + "FOREIGN KEY ("+_ID_MARQUE+") REFERENCES "+NOM_TABLE_MARQUE+"("+COL_ID+"), "
+                    + "FOREIGN KEY ("+_ID_MODELE+") REFERENCES "+NOM_TABLE_MODELE+"("+COL_ID+"), "
                     + "FOREIGN KEY ("+_ID_TYPE_LOCATIF+") REFERENCES "+NOM_TABLE_TYPE_LOCATIF+"("+COL_ID+"), "
                     + "FOREIGN KEY ("+_ID_AGENCE+") REFERENCES "+NOM_TABLE_AGENCE+"("+COL_ID+") "
             +")";

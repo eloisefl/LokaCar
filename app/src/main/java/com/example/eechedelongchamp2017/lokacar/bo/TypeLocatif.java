@@ -7,6 +7,7 @@ public class TypeLocatif {
     private String nom;
     private List<Voiture> voitures;
     private Tarif tarif;
+    private List<Tarif> tarifs;
 
     public TypeLocatif() {
     }
@@ -14,6 +15,12 @@ public class TypeLocatif {
     public TypeLocatif(int id, String nom) {
         this.id = id;
         this.nom = nom;
+    }
+
+    public TypeLocatif(int id, String nom, List<Tarif> tarifs) {
+        this.id = id;
+        this.nom = nom;
+        this.tarifs = tarifs;
     }
 
     public TypeLocatif(String nom) {
@@ -60,13 +67,22 @@ public class TypeLocatif {
         this.tarif = tarif;
     }
 
+    public List<Tarif> getTarifs() {
+        return tarifs;
+    }
+
+    public void setTarifs(List<Tarif> tarifs) {
+        this.tarifs = tarifs;
+    }
+
     @Override
     public String toString() {
         return "TypeLocatif{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
-                ", voiture=" + voitures +
+                ", voitures=" + voitures +
                 ", tarif=" + tarif +
+                ", tarifs=" + tarifs +
                 '}';
     }
 }

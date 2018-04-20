@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.eechedelongchamp2017.lokacar.bo.DataContract;
 import com.example.eechedelongchamp2017.lokacar.bo.Marque;
+import com.example.eechedelongchamp2017.lokacar.bo.TypeLocatif;
 import com.example.eechedelongchamp2017.lokacar.helper.GestionBddHelper;
 
 import java.util.ArrayList;
@@ -60,6 +61,29 @@ public class MarqueDao {
         }
 
         return objects;
+    }
+
+    // select by id
+    public Marque selectById(int id) {
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Marque marque = null;
+
+        Cursor cursor = db.query(
+                DataContract.NOM_TABLE_MARQUE,
+                null,
+                DataContract.COL_ID + " = " + id,
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor != null && cursor.moveToFirst()){
+            marque = getMarque(cursor);
+            cursor.close();
+        }
+
+        return marque;
     }
 
     // Insert

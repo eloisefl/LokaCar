@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.eechedelongchamp2017.lokacar.R;
+import com.example.eechedelongchamp2017.lokacar.bo.Tarif;
+import com.example.eechedelongchamp2017.lokacar.bo.TypeLocatif;
 import com.example.eechedelongchamp2017.lokacar.bo.Voiture;
 
 import java.util.List;
@@ -68,6 +70,12 @@ public class MesVoituresGenreAdapter extends ArrayAdapter<Voiture> {
             estLoue = "Non";
         viewHolder.voiture_detail_disponibilite.setText(estDisponible);
 
+        int tarif = 0;
+        TypeLocatif typeL = voitures.get(position).getTypeLocatif();
+        List<Tarif> tarifs = typeL.getTarifs();
+        // viewHolder.voiture_detail_saisonHaute.setText(voitures.get(position).getImmatriculation());
+        // viewHolder.voiture_detail_saisonBasse.setText(voitures.get(position).getImmatriculation());
+
         viewHolder.voiture_detail_photo.setImageResource(R.drawable.porscheuse);
 
         return convertView;
@@ -81,5 +89,7 @@ public class MesVoituresGenreAdapter extends ArrayAdapter<Voiture> {
         TextView voiture_detail_location;
         TextView voiture_detail_disponibilite;
         ImageView voiture_detail_photo;
+        TextView voiture_detail_saisonHaute;
+        TextView voiture_detail_saisonBasse;
     }
 }

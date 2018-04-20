@@ -1,8 +1,11 @@
 package com.example.eechedelongchamp2017.lokacar.bo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Marque {
+public class Marque implements Parcelable {
 
     private int id;
     private String nom;
@@ -28,6 +31,36 @@ public class Marque {
         this.voitures = voitures;
         this.modele = modele;
     }
+
+    protected Marque(Parcel in) {
+        id = in.readInt();
+        nom = in.readString();
+        voitures = in.createTypedArrayList(Voiture.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nom);
+        dest.writeTypedList(voitures);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Marque> CREATOR = new Creator<Marque>() {
+        @Override
+        public Marque createFromParcel(Parcel in) {
+            return new Marque(in);
+        }
+
+        @Override
+        public Marque[] newArray(int size) {
+            return new Marque[size];
+        }
+    };
 
     public int getId() {
         return id;

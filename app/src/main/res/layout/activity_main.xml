@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
 
     <ScrollView
@@ -59,7 +58,6 @@
 
         </LinearLayout>
 
-
     </ScrollView>
 
     <com.github.clans.fab.FloatingActionMenu
@@ -90,8 +88,6 @@
             app:fab_size="mini"
             app:fab_label="Ajouter des voitures"
             android:onClick="clickAjouterVoiture"/>
-
-
 
     </com.github.clans.fab.FloatingActionMenu>
 
